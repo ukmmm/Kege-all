@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h5>{{title}}</h5>
+<a href="/show_task/{{id}}" class="btn btn-primary">Вернуться к списку задач</a>
+    <p>
+            {{problem | safe}}
+    </p>
+    <hr noshade size="10">
+    <div class="py">
+        {% for item in answers%}
+        <pre>{{item.content | safe}}</pre>
+        Автор решения: {{item.author}}<br>
+        {% if current_user.id==item.user_id %}
+            <a href="/edit_ans/{{item.id}}" class="btn btn-primary">Редактировать решение</a>
+        {% endif %}
+        {% if current_user.id==item.user_id or current_user.admin %}
+            <a href="/del_ans/{{item.id}}" class="btn btn-danger">Удалить решение</a>
+        {% endif %}
+        <hr noshade size="10">
+        {% endfor %}
+        <a href="/chat_ans/{item.id}" class="btn btn-primary">Чат</a>
+        <a href="/show_task/{{id}}" class="btn btn-primary">Вернуться к списку задач</a>
+        {{message}}
+    </div>
+    <hr noshade size="10">
+
+
+{% endblock %}

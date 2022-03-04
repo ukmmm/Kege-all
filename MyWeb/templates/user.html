@@ -1,0 +1,83 @@
+{% extends "base-2.html" %}
+
+{% block content %}
+<style>
+    body{
+        font-family: 'Montserrat', sans-serif;
+    }
+    .divprofilefields{
+        display:flex;
+        margin:auto;
+    }
+    input[type='text']:focus {
+        outline: none;
+    }
+    .divprofilefieldsinput1{
+        width: 495px;
+        height: 40px;
+        font-size: 40px;
+        border-left: 0px;
+        border-right: 0px;
+        border-top: 0px;
+        display:flex;
+        margin-left:6%;
+        margin-bottom:3%;
+    }
+    .divprofilefieldsinput2{
+        width: 638px;
+        height: 40px;
+        font-size: 40px;
+        border-left: 0px;
+        border-right: 0px;
+        border-top: 0px;
+        margin-left:6%;
+        margin-top:2%;
+        display:flex;
+    }
+    .afavorites{
+        color:#000000;
+        transition: 0.4s;
+        text-decoration: none;
+        font-size: 40px;
+    }
+    .afavorites:hover{
+        color:#FFFFFF;
+    }
+    .divprofilefields a{
+        margin-left: 5%
+    }
+</style>
+<script>
+    window.onload = init;
+
+    function init(){
+        var button = document.getElementById("addButton")
+        button.onclick = handleButtonClick;
+    }
+
+    function handleButtonClick() {
+        alert("Ваша заявка принята");
+    }
+</script>
+<title>Профиль</title>
+<body>
+    <div class="divprofile">
+        </div>
+        <div class="divprofilefields">
+            <input  class="divprofilefieldsinput1" type="text" placeholder='{{ current_user.name }}'>
+<!--            <a href="/edit_name/{{current_user}}" class="btn btn-primary">Изменить имя</a>-->
+            <a href="/logout" class="btn btn-danger">выйти</a>
+            {% if not current_user.teach or not current_user.admin%}
+                <a href="/invite_teach" class="btn btn-primary" id="addButton">Подать заявку на учителя</a>
+            {% endif %}
+        </div>
+            <hr noshade size="10">
+        {% for item in tasks %}
+                {{item | safe}}
+                <br><br>
+            <a href="" class="btn btn-primary">Перейти к задаче</a>
+            <hr noshade size="10">
+        {% endfor %}
+</body>
+<form class="" method="post"></form>
+{% endblock %}

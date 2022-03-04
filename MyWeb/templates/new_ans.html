@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h5>{{title}}</h5>
+<form class="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+            {{problem | safe}}
+    </p>
+    <p>
+        <b>{{ form.content.label }}</b> <br>
+
+        <i>После ввода решения, внимательно посмотрите на правильность
+        его отображения, так как угловые скобки и знак "<" воспринимаются
+            как html- разметка. Добавление пробела вокруг угловых скобок позволяет избежать проблемы.</i>
+
+        {{ form.content(class="form-control") }}<br>
+        {% for error in form.content.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.author.label }}<br>
+        {{ form.author(class="form-control") }}
+    </p>
+    {{ form.submit(type="submit", class="btn btn-primary") }}
+    <a href="/show_task/{{id}}" class="btn btn-primary">Отменить</a>
+    {{message}}
+</form>
+{% endblock %}

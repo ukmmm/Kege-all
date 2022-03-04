@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h5>{{title}}</h5>
+<form class="" method="post">
+    {{ form.hidden_tag() }}
+    <div>
+    {{topic.name}}
+    </div>
+    <p>
+        {{ form.content.label }}<br>
+        {{ form.content(class="form-control") }}<br>
+        {% for error in form.content.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.ans.label }}<br>
+        {{ form.ans(class="form-control") }}<br>
+        {% for error in form.ans.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+
+    {{ form.submit(type="submit", class="btn btn-primary") }}
+    <a href="/show_task/{{topic.id}}" class="btn btn-primary">Отменить</a>
+    {{message}}
+</form>
+{% endblock %}

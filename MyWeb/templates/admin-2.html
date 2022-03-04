@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="" method="post">
+    <div class="form-group">
+        <hr noshade size="10">
+        {% for item in teach%}
+            {% if item.applic == 1 %}
+                {% if item.teach == 0 %}
+                    {{item.name}}<br><br>
+                    почта - {{item.email}}<br>
+                    <a href="/accept_teaching/{{item.id}}" class="btn btn-primary">Назначить учителя</a>
+                    <br>
+                    <hr noshade size="10">
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</form>
+{% endblock %}
