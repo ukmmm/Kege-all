@@ -13,12 +13,11 @@
             {% endif %}
         {% endif %}
         <h5>почта поддержки- kege@yandex.ru</h5>
-        <h5>Чат телеграмм</h5>
         <h3>Задачи взяты с сайта <a href="https://kpolyakov.spb.ru/school/ege.htm">КПоляков</a></h3>
         <hr noshade size="10">
         {% for item in topics%}
                     {{item.name}}<br><br>
-                    <a href="/show_task/{{item.id}}" class="btn btn-primary">Перейти к задачам</a>
+                    <button class="btn-zadach-hard"><a href="/show_task/{{item.id}}" class="a-zadach-hard">Перейти к задачам</a></button>
                     <br>
         <hr noshade size="10">
         {% endfor %}

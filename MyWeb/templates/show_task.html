@@ -3,7 +3,7 @@
 {% block content %}
 <form class="" method="post">
     <div class="form-group">
-        <a href="/index" class="btn btn-primary">К выбору темы</a>
+        <button class="btn-zadach-hard"><a href="/index" class="a-zadach-hard">К выбору темы</a></button>
         {% if current_user.is_authenticated or current_user.teach == 1%}
             {% if current_user.admin%}
                 <a href="/task/{{topic.id}}" class="btn btn-secondary">Добавить задачу</a>
@@ -17,15 +17,17 @@
     {% for item in tasks%}
         <p>
             {{item.content | safe}}<br>
-            Ответ: <br>{{item.ans | safe}}
+            <button class="btn-otvet">Ответ:<a class="hidden"><br>{{item.ans | safe}}</a></button>
         </p>
-            <a href="/show_ans/{{item.id}}" class="btn btn-primary">Посмотреть решение</a>
-        {% if current_user.is_authenticated %}
-            <a href="/new_ans/{{item.id}}" class="btn btn-secondary">Добавить решение</a>
-            {% if current_user.admin %}
-                <a href="/edit_task/{{item.id}}" class="btn btn-secondary">Редактировать задачу</a>
-            {% endif %}
-        {% endif %}
+            <div class="knopki">
+                <button class="btn-smotr-hard"><a href="/show_ans/{{item.id}}" class="a-smotr-hard">Посмотреть решение</a></button>
+                {% if current_user.is_authenticated %}
+                <button class="btn-dob-hard"><a href="/new_ans/{{item.id}}" class="a-dob-hard">Добавить решение</a></button>
+            </div><br><br>
+                    {% if current_user.admin %}
+                        <a href="/edit_task/{{item.id}}" class="btn btn-secondary">Редактировать задачу</a>
+                    {% endif %}
+                {% endif %}
         <hr noshade size="10">
     {% endfor %}
 </form>

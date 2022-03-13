@@ -66,9 +66,9 @@
         <div class="divprofilefields">
             <input  class="divprofilefieldsinput1" type="text" placeholder='{{ current_user.name }}'>
 <!--            <a href="/edit_name/{{current_user}}" class="btn btn-primary">Изменить имя</a>-->
-            <a href="/logout" class="btn btn-danger">выйти</a>
+            <button class="btn-exit-hard"><a href="/logout" class="a-exit-hard">Выйти</a></button>
             {% if not current_user.teach or not current_user.admin%}
-                <a href="/invite_teach" class="btn btn-primary" id="addButton">Подать заявку на учителя</a>
+               <a href="/invite_teach" class="btn-zav-hard" id="addButton">Подать заявку на учителя</a>
             {% endif %}
         </div>
             <hr noshade size="10">

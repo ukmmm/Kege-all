@@ -2,7 +2,6 @@
 
 {% block content %}
 <h5>{{title}}</h5>
-<a href="/show_task/{{id}}" class="btn btn-primary">Вернуться к списку задач</a>
     <p>
             {{problem | safe}}
     </p>
@@ -19,8 +18,7 @@
         {% endif %}
         <hr noshade size="10">
         {% endfor %}
-        <a href="/chat_ans/{item.id}" class="btn btn-primary">Чат</a>
-        <a href="/show_task/{{id}}" class="btn btn-primary">Вернуться к списку задач</a>
+            <button class="btn-ver-hard"><a href="/show_task/{{id}}" class="a-ver-hard">Вернуться к списку задач</a>
         {{message}}
     </div>
     <hr noshade size="10">

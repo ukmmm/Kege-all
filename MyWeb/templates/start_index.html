@@ -3,20 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossorigin="anonymous">
     <title>КЕГЭ</title>
         <style>
         body{
             font-family: 'Montserrat', sans-serif;
             background-size: cover;
         }
-
         .Title{
             width: 100%;
-            height:50%;
+            height:40%;
             border: 4px black;
             margin-top: 10%;
         }
@@ -38,7 +33,7 @@
             border: 4px black;
             margin-top: 10%;
         }
-        .glavh1 {
+        .glavh1{
             font-size: 80px;
             margin: auto;
         }
@@ -48,20 +43,28 @@
         }
         .buttons{
             width: 100%;
-            height: 50%;
-            margin-top: 15%;
+            height: 40%;
+            margin-top: 12%;
         }
         .buttonlog{
-            border: 0;
             padding: 0;
             margin: auto;
+            background-color: black;
+            width: 170px;
+            height: 65px;
+            border-radius: 85px;
+            border: 3px solid #000000;
+        }
+        .buttonlog:hover{
+            transition-duration: 0.3s;
+            background-color: #696969;
         }
         .alog:hover{
             font-size: 33px;
         }
         .buttonreg{
             border-radius: 40px;
-            width: 205px;
+            width: 300px;
             height: 71px;
             border: 0;
             padding: 0;
@@ -72,17 +75,32 @@
             cursor:pointer;
             overflow: hidden;
         }
-
+        .btn_btn-primary{
+            font-size:30px;
+            color:black;
+        }
+        .btn_btn-primary:hover{
+            transition-duration: 0.6s;
+            text-decoration: underline;
+        }
         .buttonlink{
             margin: auto;
         }
-        .btn btn-success{
+        a{
+            text-decoration:none;
+        }
+        .btn_btn-success{
             text-decoration: none;
             font-size: 33px;
             transition: 0.2s;
+            height: 80px;
+            color:white;
+            width: 160px;
+            border-radius: 9px;
         }
         .log{
             display: flex;
+            height: 80px;
         }
         .areg{
             text-decoration: none;
@@ -119,6 +137,10 @@
             color: rgba(101, 101, 101, 0.70);
             font-size: 20px;
         }
+        .proverka{
+            color:red;
+            font-size:50px;
+        }
     </style>
 </head>
 <body>
@@ -137,10 +159,10 @@
             </div>
             <div class="buttons">
                 <div class="log">
-                    <button class="buttonlog"><a class="btn btn-success" href="/login">Войти</a></button>
+                    <button class="buttonlog"><a class="btn_btn-success" href="/login">Войти</a></button>
                 </div>
                 <div class="reg">
-                    <button class="buttonreg"><a class="btn btn-primary " href="/register">Зарегистрироваться</a></button>
+                    <button class="buttonreg"><a class="btn_btn-primary" href="/register">Зарегистрироваться</a></button>
                 </div>
                 <div class="link">
                     <button class="buttonlink"><a class="alink" href="/index">войти позже</a></button>
@@ -149,7 +171,9 @@
         </div>
     </section>
     <div class="text">
+        <p class="proverka">
         Существует множество сайтов для подготовки к КЕГЭ, такие как kpolyakov, kompege.ru, РешуЕГЭ, но ни один из этих сайтов не предоставляет возможность просмотра решения задач с помощью кодов.
         Поэтому, наша команда, в составе из 3 человек, решила написать данный сайт, с помощью которого школьники не только узнают какие задачи решаются с помощью языков программирования, но и смогут посмотреть решения данных задач на коде от нас и от других учеников.
+        </p>
     </div>
 </body>

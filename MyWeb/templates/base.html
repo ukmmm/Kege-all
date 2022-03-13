@@ -9,28 +9,275 @@
           crossorigin="anonymous">
     <title>{{title}}</title>
     <style>
+        /*Ubirau podcherkivaniya dlya vseh ssilok */
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        /*Redachu ssilku zagolovka */
         .ind{
             margin-left: 35%;
             color: black;
             text-decoration: none;
-            font-size: 30%
+            font-size: 30%;
         }
         .ind:hover{
-            text-decoration:none;
+            text-decoration: none
+        }
+        .indh3{
+            color: black;
+            text-decoration: none;
+        }
+        .indh3:hover{
+            color: black;
+            text-decoration: underline;
+        }
+        /*Knopka registrasii(na glav stranice) */
+        .btn-reg{
+            border: 2px solid black;
+            padding: 0;
+            background-color: #f8f9fa;
+            border: none;
+            cursor:pointer;
+            overflow: hidden;
+            margin-top: 15px;
+            margin-right: 15px;
+        }
+        .a-reg{
+            color: black;
+            text-decoration: none;
+            background-color: #f8f9fa;
+            font-size: 18px;
+        }
+        .a-reg:hover{
+            text-decoration: underline;
+            color: black;
+            background-color: #f8f9fa;
+            transition-duration:  0.3s;
+        }
+        /*Knopka vhoda(na glav stranice) */
+        .btn-log{
+            padding: 0;
+            margin: auto;
+            background-color: black;
+            width: 100px;
+            height: 40px;
+            border-radius: 85px;
+            border: 1px solid #000000;
+        }
+        .btn-log:hover{
+            transition-duration: 0.3s;
+            background-color: #696969;
+        }
+        .a-log{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .a-log:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration:  0.3s;
+        }
+        /*Knopka vhoda(login.html) */
+        .btn-log-hard{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 0;
+            margin: auto;
+            background-color: black;
+            width: 100px;
+            height: 40px;
+            border-radius: 85px;
+            border: 1px solid #000000;
+        }
+        .btn-log-hard:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration:  0.3s;
+            transition-duration: 0.3s;
+            background-color: #696969;
+        }
+        /*Knopka pereiti k zadacham(index.html) */
+        .btn-zadach-hard{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 0;
+            margin: auto;
+            background-color: black;
+            width: 160px;
+            height: 35px;
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+        .btn-zadach-hard:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration: 0.3s;
+            background-color: #696969;
+        }
+        .a-zadach-hard{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .a-zadach-hard:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration:  0.3s;
+        }
+        /*Knopka posmotret reshenie(show_task.html) */
+        .btn-smotr-hard{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 0;
+            background-color: black;
+            width: 200px;
+            height: 38px;
+            border-radius: 5px;
+            border: 1px solid #000000;
+            margin-top: 50px;
+        }
+        .btn-smotr-hard:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration: 0.3s;
+            background-color: #696969;
+        }
+        .a-smotr-hard{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .a-smotr-hard:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration:  0.3s;
+        }
+        /*Knopka dobavit reshenie(show_task.html) */
+        .btn-dob-hard{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 0;
+            margin-bottom: 5px;
+            background-color: #4e555c;
+            width: 200px;
+            height: 38px;
+            border-radius: 5px;
+            border: 1px solid #4e555c;
+        }
+        .btn-dob-hard:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration: 0.3s;
+            background-color: #6c767e;
+        }
+        .a-dob-hard{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .a-dob-hard:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration:  0.3s;
+        }
+        /*Knopka posmotret otvet(show_task.html) */
+        .btn-otvet{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 0;
+            margin-bottom: 5px;
+            background-color: #4e555c;
+            width: 80px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #4e555c;
+            overflow: hidden;
+        }
+        .btn-otvet:active{
+            overflow: visible;
+            background-color: #4e555c;
+            height: 60px;
+        }
+        /*Div chtobi stoyali v odonm ryadu(show_task.html) */
+        .knopki{
+            height: 30px;
+        }
+        /*Knopka vernutsa k spisku zadach(show_ans.html) */
+        .btn-ver-hard{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 0;
+            width: 260px;
+            height: 38px;
+            background-color: black;
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+        .btn-ver-hard:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration: 0.3s;
+            background-color: #6c767e;
+        }
+        .a-ver-hard{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .a-ver-hard:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration:  0.3s;
+        }
+        /*Knopka redakta resheniya(new_ans.html) */
+        .btn-redact-hard{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 0;
+            width: 120px;
+            height: 38px;
+            background-color: black;
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+        .btn-redact-hard:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration: 0.3s;
+            background-color: #6c767e;
+        }
+        .a-redact-hard{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .a-redact-hard:hover{
+            text-decoration: none;
+            color: white;
+            transition-duration:  0.3s;
         }
     </style>
 </head>
 <body>
 <header>
     <nav class="navbar navbar-light bg-light">
-          <a class='ind' href="/index"><h3>КЕГЭ подготовка 10-11 классов к экзамену</h3></a>
+          <a class='ind' href="/index"><h3 class="indh3">КЕГЭ подготовка 10-11 классов к экзамену</h3></a>
 
         {% if current_user.is_authenticated or current_user.teach == 1%}
     <a class="navbar-brand" href="/user">{{ current_user.name }}</a>
     {% else %}
         <p>
-            <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
-            <a class="btn btn-success" href="/login">Войти</a>
+            <button class="btn-reg"><a class="a-reg" href="/register">Зарегистрироваться</a></button>
+            <button class="btn-log"><a class="a-log" href="/login">Войти</a></button>
         </p>
     {% endif %}
     </nav>

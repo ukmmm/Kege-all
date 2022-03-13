@@ -1,6 +1,5 @@
 import sqlite3
 
-import item as item
 from flask import Flask, render_template, request
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.utils import redirect
