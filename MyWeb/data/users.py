@@ -19,6 +19,7 @@ class User(SqlAlchemyBase, UserMixin):
     admin = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
     applic = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
     teach = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
+    block = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
 
     solutions = orm.relation("Solutions", back_populates='user')
 

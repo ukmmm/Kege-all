@@ -21,10 +21,6 @@
             </p>
         {% endfor %}
     </p>
-    <p>
-        {{ form.author.label }}<br>
-        {{ form.author(class="form-control") }}
-    </p>
     {{ form.submit(type="submit", class="btn-redact-hard") }}
     <button class="btn-redact-hard"><a href="/show_task/{{id}}" class="a-redact-hard">Отменить</a></button>
     {{message}}

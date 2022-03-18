@@ -67,7 +67,7 @@
             <input  class="divprofilefieldsinput1" type="text" placeholder='{{ current_user.name }}'>
 <!--            <a href="/edit_name/{{current_user}}" class="btn btn-primary">Изменить имя</a>-->
             <button class="btn-exit-hard"><a href="/logout" class="a-exit-hard">Выйти</a></button>
-            {% if not current_user.teach or not current_user.admin%}
+            {% if not current_user.teach or not current_user.admin or %}
                <a href="/invite_teach" class="btn-zav-hard" id="addButton">Подать заявку на учителя</a>
             {% endif %}
         </div>
@@ -75,7 +75,6 @@
         {% for item in tasks %}
                 {{item | safe}}
                 <br><br>
-            <a href="" class="btn btn-primary">Перейти к задаче</a>
             <hr noshade size="10">
         {% endfor %}
 </body>

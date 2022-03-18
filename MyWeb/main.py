@@ -1,5 +1,3 @@
-import sqlite3
-
 from flask import Flask, render_template, request
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.utils import redirect
@@ -10,7 +8,6 @@ from data.solutions import Solutions
 from data.tasks import Tasks
 from data.topics import Topics
 from data.users import User
-# from data.chat import Chat
 from forms.admin import NewTopic, NewTask, NewAns
 from forms.user import RegisterForm, LoginForm
 
@@ -24,7 +21,6 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(User).get(user_id)
-
 
 
 @app.route("/")
@@ -60,7 +56,7 @@ def login():
 
 
 # #просмотр страницы user
-@app.route('/user',  methods=['GET', 'POST'])
+@app.route('/user', methods=['GET', 'POST'])
 def user():
     db_sess = db_session.create_session()
     topics = db_sess.query(Solutions)
@@ -91,10 +87,7 @@ def reqister():
             return render_template('register.html', title='Регистрация',
                                    form=form,
                                    message="Такой пользователь уже есть")
-        user = User(
-            name=form.name.data,
-            email=form.email.data
-        )
+        user = User(name=form.name.data, email=form.email.data)
 
         user.set_password(form.password.data)
         db_sess.add(user)
@@ -104,8 +97,8 @@ def reqister():
                            title='Регистрация', form=form)
 
 
-#заявка на учителя
-@app.route('/invite_teach',  methods=['GET', 'POST'])
+# заявка на учителя
+@app.route('/invite_teach', methods=['GET', 'POST'])
 def invite():
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
@@ -114,7 +107,7 @@ def invite():
     return redirect('/user')
 
 
-@app.route('/teachers',  methods=['GET', 'POST'])
+@app.route('/teachers', methods=['GET', 'POST'])
 def teachers():
     db_sess = db_session.create_session()
     teach = db_sess.query(User)
@@ -122,19 +115,37 @@ def teachers():
                            teach=teach)
 
 
-#Принятие учителя
-@app.route('/accept_teaching/<int:id>',  methods=['GET', 'POST'])
+@app.route('/all-user', methods=['GET', 'POST'])
+def allusers():
+    db_sess = db_session.create_session()
+    teach = db_sess.query(User)
+    return render_template('all-user.html',
+                           user=teach)
+
+
+# Принятие учителя
+@app.route('/accept_teaching/<int:id>', methods=['GET', 'POST'])
 def accept_teaching(id):
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == id).first()
     user.teach = 1
     user.applic = 0
     db_sess.commit()
-    return redirect('/user')
+    return redirect('/index')
+
+
+# Принятие учителя
+@app.route('/block_user/<int:id>', methods=['GET', 'POST'])
+def block_user(id):
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).filter(User.id == id).first()
+    user.block = 1
+    db_sess.commit()
+    return redirect('/index')
 
 
 # добавление темы
-@app.route('/topic',  methods=['GET', 'POST'])
+@app.route('/topic', methods=['GET', 'POST'])
 @login_required
 def add_topic():
     form = NewTopic()
@@ -151,7 +162,7 @@ def add_topic():
 
 
 # показ задач по выбранной теме
-@app.route('/show_task/<int:id>',  methods=['GET', 'POST'])
+@app.route('/show_task/<int:id>', methods=['GET', 'POST'])
 def show_task(id):
     db_sess = db_session.create_session()
     topic = db_sess.query(Topics).filter(Topics.id == id).first()
@@ -160,9 +171,11 @@ def show_task(id):
                            title='Просмотр задач по выбранной теме',
                            topic=topic, tasks=tasks)
 
-#чат
-@app.route('/chat_ans/<int:id>',  methods=['GET', 'POST'])
-def chat_ans(id):
+
+# добавление задачи
+@app.route('/task/<int:id>', methods=['GET', 'POST'])
+@login_required
+def add_task(id):
     db_sess = db_session.create_session()
     topic = db_sess.query(Topics).filter(Topics.id == id).first()
     form = NewTask()
@@ -182,31 +195,8 @@ def chat_ans(id):
                            form=form, topic=topic)
 
 
-# добавление задачи
-@app.route('/task/<int:id>',  methods=['GET', 'POST'])
-@login_required
-def add_task(id):
-    db_sess = db_session.create_session()
-    topic = db_sess.query(Topics).filter(Topics.id == id).first()
-    form = NewTask()
-    if form.validate_on_submit():
-        task = Tasks()
-        task.topic_id = id
-        task.content = form.content.data
-        task.ans = form.ans.data
-        db_sess.add(task)
-        db_sess.commit()
-        tasks = db_sess.query(Tasks).filter(Tasks.topic_id == topic.id).all()
-        return render_template('show_task.html',
-                           title='Просмотр задач по выбранной теме',
-                           topic=topic, tasks=tasks)
-    return render_template('task.html',
-                           title='Добавление задачи',
-                           form=form, topic=topic)
-
-
 # Редактирование текста задачи
-@app.route('/edit_task/<int:id>',  methods=['GET', 'POST'])
+@app.route('/edit_task/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_task(id):
     form = NewTask()
@@ -234,9 +224,8 @@ def edit_task(id):
                            form=form, topic=topic)
 
 
-
 # просмотр решений задачи
-@app.route('/show_ans/<int:id>',  methods=['GET', 'POST'])
+@app.route('/show_ans/<int:id>', methods=['GET', 'POST'])
 def show_answer(id):
     db_sess = db_session.create_session()
     answers = db_sess.query(Solutions).filter(Solutions.id_task == id).all()
@@ -250,7 +239,7 @@ def show_answer(id):
 
 
 # добавление решения задачи
-@app.route('/new_ans/<int:id>',  methods=['GET', 'POST'])
+@app.route('/new_ans/<int:id>', methods=['GET', 'POST'])
 @login_required
 def add_answer(id):
     db_sess = db_session.create_session()
@@ -262,9 +251,7 @@ def add_answer(id):
         ans = Solutions()
         ans.id_task = id
         ans.content = f'<pre> {form.content.data} </pre>'
-        ans.author = form.author.data
-        if form.author.data == '':
-            ans.author='не указан'
+        ans.author = current_user.name
         ans.user_id = current_user.id
         db_sess.add(ans)
         db_sess.commit()
@@ -280,8 +267,9 @@ def add_answer(id):
                            problem=problem,
                            id=task.topic_id)
 
+
 # редактирование решения задачи
-@app.route('/edit_ans/<int:id>',  methods=['GET', 'POST'])
+@app.route('/edit_ans/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_answer(id):
     form = NewAns()
@@ -312,8 +300,9 @@ def edit_answer(id):
                            problem=task.content,
                            id=task.topic_id)
 
+
 # удаление решения задачи
-@app.route('/del_ans/<int:id>',  methods=['GET', 'POST'])
+@app.route('/del_ans/<int:id>', methods=['GET', 'POST'])
 @login_required
 def del_answer(id):
     db_sess = db_session.create_session()

@@ -21,7 +21,8 @@
         </p>
             <div class="knopki">
                 <button class="btn-smotr-hard"><a href="/show_ans/{{item.id}}" class="a-smotr-hard">Посмотреть решение</a></button>
-                {% if current_user.is_authenticated %}
+                {% if current_user.is_authenticated  and not current_user.block%}
+                {% current_user.block %}
                 <button class="btn-dob-hard"><a href="/new_ans/{{item.id}}" class="a-dob-hard">Добавить решение</a></button>
             </div><br><br>
                     {% if current_user.admin %}

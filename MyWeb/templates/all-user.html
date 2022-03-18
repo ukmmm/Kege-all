@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="" method="post">
+    <div class="form-group">
+        <hr noshade size="10">
+        {% for item in user%}
+            {% if item.block != 1 %}
+                    {{item.name}}<br><br>
+                    почта - {{item.email}}<br>
+                    <a href="/block_user/{{item.id}}" class="btn btn-primary">Заблокировать</a>
+                    <br>
+                    <hr noshade size="10">
+            {% endif %}
+        {% endfor %}
+    </div>
+</form>
+{% endblock %}
